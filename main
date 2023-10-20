@@ -18,12 +18,23 @@ for element in root:
     value = element.text  # 讀取裡面的文字10000,10,20(被tag包夾文字)
     data_dict[key] = value#把資料存到python裡面的字典處理
 # 打印字典
-print(data_dict)
-x = int(data_dict['x'])
+#print(data_dict)
+x = int(data_dict['x'])#讀取值
 s = int(data_dict['s'])
 y = int(data_dict['y'])
-# x = int(input("每年投資的金額"))
-# s = int(input("年利率"))
-# y = int(input("年份"))
 
-print(compound_interest(x,s,y))
+print(compound_interest(x,s,y))#算出解果
+#不但要計算出解果且要存至記事本
+#打開記事本
+file = open("result.txt","w",encoding="utf-8")
+#result.txt->檔案名稱
+#"w"->write寫入
+#encoding->文字編碼 繁體用的是"utf-8"簡體"big-5"
+file.write("本金:"+str(x)+"\n")
+file.write("年利率:"+str(s)+"\n")
+file.write("投資年分:"+str(y)+"\n")
+file.write("--------以下是您可以得到的金額---------\n")
+# file.write(str(int(compound_interest(x,s,y)))+".00元")
+num = compound_interest(x,s,y)
+file.write(f"{num:.2f}元")#字串格式化
+file.close()
